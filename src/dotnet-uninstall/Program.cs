@@ -12,11 +12,11 @@ namespace Microsoft.DotNet.Tools.Uninstall
     {
         internal static int Main(string[] args)
         {
-            return CommandLineConfigs.UninstallRootCommand.InvokeAsync(args).Result;
+            //return CommandLineConfigs.UninstallRootCommand.InvokeAsync(args).Result;
 
-            //UninstallCommandExec.Execute();
+            UninstallCommandExec.Execute();
 
-            //return 0;
+            return 0;
         }
     }
 }
