@@ -88,7 +88,7 @@ namespace Microsoft.DotNet.Tools.Uninstall.Windows
                 process.Start();
                 process.WaitForExit();
 
-                Thread.Sleep(30 * 1000);
+              //  Thread.Sleep(30 * 1000);
             }
         }
 
@@ -156,7 +156,7 @@ namespace Microsoft.DotNet.Tools.Uninstall.Windows
 
         internal static void myHandler(object sender, ConsoleCancelEventArgs args)
         {
-            Console.WriteLine(sender.ToString());
+          //  Console.WriteLine(sender.ToString());
 
             Console.WriteLine("\nThe read operation has been interrupted.");
 
