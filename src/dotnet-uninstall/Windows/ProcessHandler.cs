@@ -85,10 +85,13 @@ namespace Microsoft.DotNet.Tools.Uninstall.Windows
                     }
                 };
 
+                
                 process.Start();
+                Console.WriteLine($" process.Start(); {process.ToString()}");
                 process.WaitForExit();
+                Console.WriteLine($" process.WaitForExit();");
 
-              //  Thread.Sleep(30 * 1000);
+                //  Thread.Sleep(30 * 1000);
             }
         }
 
