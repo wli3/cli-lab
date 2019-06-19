@@ -11,7 +11,7 @@ namespace Microsoft.DotNet.Tools.Uninstall.Windows
         {
             var displayName = registryKey.GetValue("DisplayName") as string;
             var bundleVersion = registryKey.GetValue("BundleVersion") as string;
-            var uninstallCommand = registryKey.GetValue("QuietUninstallString") as string;
+            var uninstallCommand = registryKey.GetValue("BundleCachePath") as string;
             var bundleCachePath = registryKey.GetValue("BundleCachePath") as string;
 
             ParseVersionAndArch(displayName, bundleVersion, bundleCachePath, out var version, out var arch);

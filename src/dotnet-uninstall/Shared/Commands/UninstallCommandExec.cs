@@ -57,7 +57,7 @@ namespace Microsoft.DotNet.Tools.Uninstall.Shared.Commands
 
         private static void ExecuteUninstallWindows(IEnumerable<Bundle> bundles)
         {
-            ProcessHandler.ExecuteUninstallCommand(bundles);
+            ProcessHandler.ExecuteUninstallCommand();
         }
     }
 }

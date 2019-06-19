@@ -14,71 +14,22 @@ namespace Microsoft.DotNet.Tools.Uninstall.Windows
 {
     public static class ProcessHandler
     {
-        private const int PROCESS_TIMEOUT = 5 * 60 * 1000;
 
-        [DllImport("shell32.dll", SetLastError = true)]
-        static extern IntPtr CommandLineToArgvW(
-            [MarshalAs(UnmanagedType.LPWStr)] string lpCmdLine, out int pNumArgs);
 
-        internal static void ExecuteUninstallCommand(IEnumerable<Bundle> bundles)
+        internal static void ExecuteUninstallCommand()
         {
-            if (!IsAdmin())
-            {
-                RunAsAdmin();
-                return;
-            }
-
-
-
             Console.CancelKeyPress += new ConsoleCancelEventHandler(myHandler);
 
-            AppDomain.CurrentDomain.ProcessExit += (_1, _2) => Console.WriteLine("!!!???");
-
-            foreach (var bundle in bundles.ToList().AsReadOnly())
+            foreach (var bundle in new[] {
+                @"C:\ProgramData\Package Cache\{0ecb2aeb-69f6-4c91-99ca-3da8fc126200}\dotnet-sdk-2.1.507-win-x64.exe",
+                @"C:\ProgramData\Package Cache\{d198c231-829e-4f4b-832d-0571aa77244a}\dotnet-sdk-2.1.604-win-x64.exe" } )
             {
-                var args = ParseCommand(bundle.UninstallCommand, out var argc);
-
-                /*
-
-                var sInfo = new PInvoke.STARTUPINFO();
-                var pSec = new PInvoke.SECURITY_ATTRIBUTES();
-                var tSec = new PInvoke.SECURITY_ATTRIBUTES();
-                pSec.nLength = Marshal.SizeOf(pSec);
-                tSec.nLength = Marshal.SizeOf(tSec);
-
-                Console.WriteLine(args.First());
-
-                var retValue = PInvoke.CreateProcess(
-                    args.First(),
-                    bundle.UninstallCommand, //string.Join(" ", args.Skip(1)),
-                    ref pSec,
-                    ref tSec,
-                    false,
-                    PInvoke.CREATE_NEW_CONSOLE,
-                    IntPtr.Zero,
-                    null,
-                    ref sInfo,
-                    out var pInfo);
-
-               //Debugger.Launch();
-
-                if (!retValue ||
-                    PInvoke.WaitForSingleObject(pInfo.hProcess, PROCESS_TIMEOUT) != PInvoke.WAIT_OBJECT_0 ||
-                    !PInvoke.GetExitCodeProcess(pInfo.hProcess, out var exitCode))
-                {
-                    throw new UninstallationFailedException(bundle.UninstallCommand);
-                }
-
-                if (exitCode != 0)
-                {
-                    throw new UninstallationFailedException(bundle.UninstallCommand, (int)exitCode);
-                }*/
 
                 var process = new Process
                 {
                     StartInfo = new ProcessStartInfo()
                     {
-                        FileName = args.First(),
+                        FileName = bundle,
                         Arguments = "/uninstall /quiet",
                         UseShellExecute = true,
                         CreateNoWindow = true,
@@ -91,70 +42,7 @@ namespace Microsoft.DotNet.Tools.Uninstall.Windows
                 process.WaitForExit();
                 Console.WriteLine($" process.WaitForExit();");
 
-                //  Thread.Sleep(30 * 1000);
             }
-        }
-
-        private static IEnumerable<string> ParseCommand(string command, out int argc)
-        {
-            var argv = CommandLineToArgvW(command, out argc);
-
-            if (argv == IntPtr.Zero)
-            {
-                throw new Win32Exception();
-            }
-
-            string[] args;
-            try
-            {
-                args = new string[argc];
-
-                for (var i = 0; i < argc; i++)
-                {
-                    var p = Marshal.ReadIntPtr(argv, i * IntPtr.Size);
-                    args[i] = Marshal.PtrToStringUni(p);
-                }
-            }
-            finally
-            {
-                Marshal.FreeHGlobal(argv);
-            }
-
-            return args;
-        }
-
-        private static bool IsAdmin()
-        {
-            try
-            {
-                var identity = WindowsIdentity.GetCurrent();
-                var principal = new WindowsPrincipal(identity);
-                return principal.IsInRole(WindowsBuiltInRole.Administrator);
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        private static void RunAsAdmin()
-        {
-            var location = Assembly.GetEntryAssembly().Location;
-
-            var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "dotnet",
-                    Arguments = $"{location} {string.Join(" ", Environment.GetCommandLineArgs().Skip(1))}",
-                    UseShellExecute = true,
-                    Verb = "runas",
-                    WindowStyle = ProcessWindowStyle.Hidden
-                }
-            };
-
-            process.Start();
-            process.WaitForExit();
         }
 
         internal static void myHandler(object sender, ConsoleCancelEventArgs args)

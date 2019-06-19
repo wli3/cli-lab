@@ -18,17 +18,10 @@ namespace Microsoft.DotNet.Tools.Uninstall
         {
             //return CommandLineConfigs.UninstallRootCommand.InvokeAsync(args).Result;
 
-            var filtered = new MajorMinorOptionFilterer().Filter<SdkVersion>("2.1", Bundle<SdkVersion>.FilterWithSameBundleType(RegistryQuery.GetInstalledBundles()));
+           // var filtered = new MajorMinorOptionFilterer().Filter<SdkVersion>("2.1", Bundle<SdkVersion>.FilterWithSameBundleType(RegistryQuery.GetInstalledBundles()));
 
-            Console.WriteLine("...........");
-            foreach (var f in filtered)
-            {
-                Console.WriteLine(f.UninstallCommand);
-            }
 
-            Console.WriteLine("...........");
-
-            ProcessHandler.ExecuteUninstallCommand(filtered);
+            ProcessHandler.ExecuteUninstallCommand();
             //UninstallCommandExec.Execute();
 
             return 0;
