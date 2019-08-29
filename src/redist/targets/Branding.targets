@@ -1,0 +1,21 @@
+<Project>
+  <Target Name="SetSdkBrandingInfo" DependsOnTargets="SetSdkVersionInfo">
+    <PropertyGroup>
+      <BuildName>cli</BuildName>
+      <SdkBrandName>Microsoft .NET Core SDK $(CliBrandingVersion)</SdkBrandName>
+      <MSBuildExtensionsBrandName>.NET Standard Support for Visual Studio 2015</MSBuildExtensionsBrandName>
+      <SharedFrameworkBrandName>Microsoft .NET Core Runtime $(MicrosoftNETCoreAppPackageVersion)</SharedFrameworkBrandName>
+      <NetCoreAppTargetingPackBrandName>Microsoft .NET Core Targeting Pack $(MicrosoftNETCoreAppPackageVersion)</NetCoreAppTargetingPackBrandName>
+      <NetStandardTargetingPackBrandName>Microsoft .NET Standard 2.1 Targeting Pack $(MicrosoftNETCoreAppPackageVersion)</NetStandardTargetingPackBrandName>
+      <NetCoreAppHostPackBrandName>Microsoft .NET AppHost Pack $(MicrosoftNETCoreAppPackageVersion)</NetCoreAppHostPackBrandName>
+      <SharedHostBrandName>Microsoft .NET Core Host $(MicrosoftNETCoreAppPackageVersion)</SharedHostBrandName>
+      <HostFxrBrandName>Microsoft .NET Core Host FX Resolver $(MicrosoftNETCoreAppPackageVersion)</HostFxrBrandName>
+      <SharedFrameworkName>Microsoft.NETCore.App</SharedFrameworkName>
+      <SharedFrameworkNugetName>$(SharedFrameworkName)</SharedFrameworkNugetName>
+      <BundledTemplates30BrandName>Microsoft .NET Core 3.0 Templates</BundledTemplates30BrandName>
+      <BundledTemplates22BrandName>Microsoft .NET Core 2.2 Templates</BundledTemplates22BrandName>
+      <BundledTemplates21BrandName>Microsoft .NET Core 2.1 Templates</BundledTemplates21BrandName>
+    </PropertyGroup>
+  </Target>
+  
+</Project>
