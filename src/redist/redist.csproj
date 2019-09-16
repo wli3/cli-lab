@@ -6,42 +6,12 @@
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
-  <ItemGroup>
-    <!-- Explicitlty reference Microsoft.NETCore.App package here, using the version from Version.props, instead
-         of the version from the stage 0 SDK. -->
-    <PackageReference Include="Microsoft.NETCore.App" Version="$(MicrosoftNETCoreAppPackageVersion)"
-                      PrivateAssets="All" Publish="true"/>
-
-    <ProjectReference Include="..\SdkResolver\SdkResolver.csproj" ReferenceOutputAssembly="false" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="targets\DownloadPackage.csproj" />
-    <None Include="targets\LayoutTool.csproj" />
-  </ItemGroup>
-
+<!--
   <Import Project="targets\BuildCoreSdkTasks.targets" />
   <Import Project="targets\GetRuntimeInformation.targets" />
-  <Import Project="targets\Versions.targets" />
-  <Import Project="targets\SetBuildDefaults.targets" />
-  <Import Project="targets\Branding.targets" />
-  <Import Project="targets\BundledTemplates.targets" />
-  <Import Project="targets\BundledDotnetTools.targets" />
-  <Import Project="targets\GenerateBundledVersions.targets" />
-  <Import Project="targets\Crossgen.targets" />
+  <Import Project="targets\GenerateBundledVersions.targets" /> -->
   <Import Project="targets\GenerateLayout.targets" />
-  <Import Project="targets\GenerateMSBuildExtensions.targets" />
-  <Import Project="targets\FileExtensions.targets" />
-  
-  <Import Project="targets\GenerateArchives.targets" />
+  <!-- <Import Project="targets\FileExtensions.targets" />
   <Import Project="targets\GenerateMSIs.targets" />
-  <Import Project="targets\LinuxNativeInstallerDependencyVersions.targets" />
-  <Import Project="targets\GenerateDebs.targets" />
-  <Import Project="targets\GenerateRPMs.targets" />
-  <Import Project="targets\GeneratePKG.targets" />
-  <Import Project="targets\GenerateInstallers.targets" />
-  <Import Project="targets\Badge.targets" />
-  <Import Project="targets\Checksum.targets" />
-
-  <Import Project="targets\Signing.targets" />
+  <Import Project="targets\Signing.targets" /> -->
 </Project>
