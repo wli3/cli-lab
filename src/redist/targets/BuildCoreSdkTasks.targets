@@ -1,22 +1,17 @@
 <Project>
   <PropertyGroup>
-    <!-- Tasks are multitargeted to support building in VS and with desktop MSBuild -->
-    <TaskTargetFramework>$(CoreSdkTargetFramework)</TaskTargetFramework>
-    <TaskTargetFramework Condition="'$(MSBuildRuntimeType)' != 'Core'">net472</TaskTargetFramework>
-    
-    <CoreSdkTaskDll>$(ArtifactsDir)tasks\bin\core-sdk-tasks\$(Configuration)\$(TaskTargetFramework)\core-sdk-tasks.dll</CoreSdkTaskDll>
+    <CoreSdkTaskDll>$(ArtifactsDir)tasks\core-sdk-tasks.dll</CoreSdkTaskDll>
     <CoreSdkTaskProject>$(RepoRoot)src\core-sdk-tasks\core-sdk-tasks.csproj</CoreSdkTaskProject>
   </PropertyGroup>
-  <Target Name="BuildCoreSdkTasks" BeforeTargets="_CheckForInvalidConfigurationAndPlatform">
-    <!-- Use a different ArtifactsDir for this invocation so that the tasks project can be part of the solution
-         (for easy editing), but we don't hit problems with the tasks DLL being locked when we try to build the solution. -->
 
+  <Target Name="BuildCoreSdkTasks" BeforeTargets="_CheckForInvalidConfigurationAndPlatform">
     <MSBuild Projects="$(CoreSdkTaskProject)"
-             Properties="ArtifactsDir=$(ArtifactsDir)tasks\;Phase=Restore"
+             Properties="Publishdir=$(ArtifactsDir)tasks\;Phase=Restore"
              Targets="Restore"/>
 
     <MSBuild Projects="$(CoreSdkTaskProject)"
-             Properties="ArtifactsDir=$(ArtifactsDir)tasks\"/>
+             Properties="Publishdir=$(ArtifactsDir)tasks\"
+             Targets="Publish"/>
   </Target>
 
   <UsingTask TaskName="GetCurrentRuntimeInformation" AssemblyFile="$(CoreSdkTaskDll)" />

@@ -99,7 +99,6 @@
                             MsiTargetsSetupInputOutputs;
                             AcquireWix;
                             GenerateSdkMsi;
-                            SignSdkMsi;"
-        Condition=" '$(OS)' == 'Windows_NT' and !$(Architecture.StartsWith('arm')) " />
+                            SignSdkMsi;"/>
 
 </Project>

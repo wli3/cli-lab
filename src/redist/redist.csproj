@@ -1,16 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
-   <PropertyGroup>
+  <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <CopyBuildOutputToPublishDirectory>false</CopyBuildOutputToPublishDirectory>
     <DisableImplicitFrameworkReferences>false</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
-
   <Import Project="targets\BuildCoreSdkTasks.targets" />
+  <Import Project="targets\GetRuntimeInformation.targets" />
   <!--  <Import Project="targets\GenerateBundledVersions.targets" /> -->
   <Import Project="targets\GenerateLayout.targets" />
   <!-- <Import Project="targets\FileExtensions.targets" />  -->
   <Import Project="targets\GenerateMSIs.targets" />
-  <Import Project="targets\Signing.targets" /> 
+  <Import Project="targets\Signing.targets" />
+
+  <Target Name="GenerateMSIs"
+          AfterTargets="Build"
+          DependsOnTargets="GenerateLayout;GenerateSdkMsi">
+  </Target>
 </Project>

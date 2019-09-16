@@ -10,7 +10,6 @@
     <MakeDir Directories="$(SdkOutputDirectory)" />
   </Target>
 
-  <!-- TODO wul no check in add SignLayout back -->
   <Target Name="GenerateLayout"
           DependsOnTargets="CleanLayoutPath;
                             PublishDotnetCoreUninstallProject;
