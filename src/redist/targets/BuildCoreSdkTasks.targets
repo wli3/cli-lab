@@ -6,11 +6,11 @@
 
   <Target Name="BuildCoreSdkTasks" BeforeTargets="_CheckForInvalidConfigurationAndPlatform">
     <MSBuild Projects="$(CoreSdkTaskProject)"
-             Properties="Publishdir=$(ArtifactsDir)tasks\;Phase=Restore"
+             Properties="publishdir=$(ArtifactsDir)tasks\;Phase=Restore"
              Targets="Restore"/>
 
     <MSBuild Projects="$(CoreSdkTaskProject)"
-             Properties="Publishdir=$(ArtifactsDir)tasks\"
+             Properties="publishdir=$(ArtifactsDir)tasks\;RuntimeIdentifier=win-x86;selfcontained=false"
              Targets="Publish"/>
   </Target>
 
