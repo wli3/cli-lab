@@ -90,28 +90,8 @@
         <CertificateName>$(ExternalCertificateId)</CertificateName>
       </LayoutFilesToSign>
       <!-- Built binaries -->
-      <LayoutFilesToSign Include="$(SdkOutputDirectory)**/csc.exe;
-                            $(SdkOutputDirectory)**/csc.dll;
-                            $(SdkOutputDirectory)**/VBCSCompiler.dll;
-                            $(SdkOutputDirectory)**/vbc.exe;
-                            $(SdkOutputDirectory)**/vbc.dll;
-                            $(SdkOutputDirectory)**/fsc.exe;
-                            $(SdkOutputDirectory)**/fsi.exe;
-                            $(SdkOutputDirectory)**/FSharp.*.dll;
-                            $(SdkOutputDirectory)**/dotnet.dll;
-                            $(SdkOutputDirectory)**/dotnet.resources.dll;
-                            $(SdkOutputDirectory)**/System.*.dll;
-                            $(SdkOutputDirectory)**/Microsoft.*.dll;
-                            $(SdkOutputDirectory)**/NuGet*.dll;
-                            $(SdkOutputDirectory)**/datacollector.dll;
-                            $(SdkOutputDirectory)**/datacollector.exe;
-                            $(SdkOutputDirectory)**/MSBuild.dll;
-                            $(SdkOutputDirectory)**/MSBuild.resources.dll;
-                            $(SdkOutputDirectory)**/testhost.dll;
-                            $(SdkOutputDirectory)**/testhost.exe;
-                            $(SdkOutputDirectory)**/testhost.x86.exe;
-                            $(SdkOutputDirectory)**/vstest.console.dll;
-                            $(SdkOutputDirectory)**/vstest.console.resources.dll">
+      <LayoutFilesToSign Include="$(SdkOutputDirectory)**/dotnet-core-uninstall.dll;
+                            $(SdkOutputDirectory)**/dotnet-core-uninstall.exe">
         <CertificateName>$(InternalCertificateId)</CertificateName>
       </LayoutFilesToSign>
 

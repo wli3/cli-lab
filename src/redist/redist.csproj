@@ -6,11 +6,11 @@
     <DisableImplicitFrameworkReferences>false</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
-<!--
+
   <Import Project="targets\BuildCoreSdkTasks.targets" />
-  <Import Project="targets\GenerateBundledVersions.targets" /> -->
+  <!--  <Import Project="targets\GenerateBundledVersions.targets" /> -->
   <Import Project="targets\GenerateLayout.targets" />
-  <!-- <Import Project="targets\FileExtensions.targets" />
+  <!-- <Import Project="targets\FileExtensions.targets" />  -->
   <Import Project="targets\GenerateMSIs.targets" />
-  <Import Project="targets\Signing.targets" /> -->
+  <Import Project="targets\Signing.targets" /> 
 </Project>

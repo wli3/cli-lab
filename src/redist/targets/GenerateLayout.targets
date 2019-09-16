@@ -14,7 +14,7 @@
   <Target Name="GenerateLayout"
           DependsOnTargets="CleanLayoutPath;
                             PublishDotnetCoreUninstallProject;
-                            "
+                            SignLayout"
           BeforeTargets="AfterBuild">
   </Target>
 
