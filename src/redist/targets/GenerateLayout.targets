@@ -1,14 +1,13 @@
 <Project>
   <PropertyGroup>
-    <SdkOutputDirectory>$(ArtifactsDir)layout\$(Version)\</SdkOutputDirectory>
-    <RedistLayoutPath>$(BaseOutputPath)$(Configuration)\dotnet-core-uninstall\</RedistLayoutPath>
+    <SdkOutputDirectory>$(ArtifactsDir)layout\dotnet-core-uninstall\</SdkOutputDirectory>
     <DownloadsFolder>$(IntermediateOutputPath)downloads\</DownloadsFolder>
   </PropertyGroup>
 
   <Target Name="CleanLayoutPath">
     <!-- Remove everything from the publish directory so we don't have left over items from previous builds -->
-    <RemoveDir Directories="$(RedistLayoutPath)" />
-    <MakeDir Directories="$(RedistLayoutPath)" />
+    <RemoveDir Directories="$(SdkOutputDirectory)" />
+    <MakeDir Directories="$(SdkOutputDirectory)" />
   </Target>
 
   <!-- TODO wul no check in add SignLayout back -->
@@ -23,7 +22,7 @@
     <MSBuild
       BuildInParallel="False"
       Projects="$(RepoRoot)\src\dotnet-core-uninstall\dotnet-core-uninstall.csproj"
-      Properties="NoBuild=true;PublishDir=$(RedistLayoutPath);PublishSingleFile=false"
+      Properties="NoBuild=true;PublishDir=$(SdkOutputDirectory);PublishSingleFile=false"
       Targets="Publish">
     </MSBuild>
   </Target>
