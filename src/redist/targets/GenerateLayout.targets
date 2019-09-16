@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <SdkOutputDirectory>$(ArtifactsDir)layout\$(Version)\</SdkOutputDirectory>
-    <RedistLayoutPath>$(BaseOutputPath)$(Configuration)\dotnet\</RedistLayoutPath>
+    <RedistLayoutPath>$(BaseOutputPath)$(Configuration)\dotnet-core-uninstall\</RedistLayoutPath>
     <DownloadsFolder>$(IntermediateOutputPath)downloads\</DownloadsFolder>
   </PropertyGroup>
 
@@ -22,8 +22,8 @@
   <Target Name="PublishDotnetCoreUninstallProject" AfterTargets="Build">
     <MSBuild
       BuildInParallel="False"
-      Projects="$(MSBuildThisFileDirectory)\dotnet-core-uninstall.csproj"
-      Properties="NoBuild=true;PublishDir=$(RedistLayoutPath)"
+      Projects="$(RepoRoot)\src\dotnet-core-uninstall\dotnet-core-uninstall.csproj"
+      Properties="NoBuild=true;PublishDir=$(RedistLayoutPath);PublishSingleFile=false"
       Targets="Publish">
     </MSBuild>
   </Target>

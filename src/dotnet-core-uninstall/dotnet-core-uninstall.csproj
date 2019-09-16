@@ -2,7 +2,8 @@
   <PropertyGroup>
     <AssemblyName>dotnet-core-uninstall</AssemblyName>
     <OutputType>Exe</OutputType>
-    <PublishSingleFile Condition="'$(RuntimeIdentifier)' == 'win-x86'">true</PublishSingleFile>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishTrimmed>true</PublishTrimmed>
     <RuntimeIdentifiers>win-x86;osx-x64</RuntimeIdentifiers>
     <SelfContained>true</SelfContained>
     <SignAssembly>true</SignAssembly>
