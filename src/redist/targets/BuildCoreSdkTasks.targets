@@ -1,17 +1,19 @@
 <Project>
   <PropertyGroup>
-    <CoreSdkTaskDll>$(ArtifactsDir)tasks\core-sdk-tasks.dll</CoreSdkTaskDll>
+    <CoreSdkTaskDll>$(ArtifactsDir)tasks\bin\core-sdk-tasks\$(Configuration)\netcoreapp3.0\core-sdk-tasks.dll</CoreSdkTaskDll>
     <CoreSdkTaskProject>$(RepoRoot)src\core-sdk-tasks\core-sdk-tasks.csproj</CoreSdkTaskProject>
   </PropertyGroup>
 
   <Target Name="BuildCoreSdkTasks" BeforeTargets="_CheckForInvalidConfigurationAndPlatform">
+    <!-- Use a different ArtifactsDir for this invocation so that the tasks project can be part of the solution
+         (for easy editing), but we don't hit problems with the tasks DLL being locked when we try to build the solution. -->
+
     <MSBuild Projects="$(CoreSdkTaskProject)"
-             Properties="publishdir=$(ArtifactsDir)tasks\;Phase=Restore"
+             Properties="ArtifactsDir=$(ArtifactsDir)tasks\;Phase=Restore;RuntimeIdentifier="
              Targets="Restore"/>
 
     <MSBuild Projects="$(CoreSdkTaskProject)"
-             Properties="publishdir=$(ArtifactsDir)tasks\;RuntimeIdentifier=win-x86;selfcontained=false"
-             Targets="Publish"/>
+             Properties="ArtifactsDir=$(ArtifactsDir)tasks\;RuntimeIdentifier="/>
   </Target>
 
   <UsingTask TaskName="GetCurrentRuntimeInformation" AssemblyFile="$(CoreSdkTaskDll)" />
