@@ -36,7 +36,7 @@
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="$(var.Program_Files)">
-        <Directory Id="DOTNETHOME" Name="dotnet"/>
+        <Directory Id="DOTNETHOME" Name="dotnet-core-uninstall"/>
       </Directory>
     </Directory>
   </Fragment>
