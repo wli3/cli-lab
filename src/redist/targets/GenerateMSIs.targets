@@ -8,7 +8,7 @@
     </PropertyGroup>
   </Target>
 
-  <Target Name="SetupWixProperties" DependsOnTargets="GetCurrentRuntimeInformation">
+  <Target Name="SetupWixProperties" DependsOnTargets="SetupFileExtensions;GetCurrentRuntimeInformation">
     <!-- AcquireWix Properties -->
     <PropertyGroup>
       <WixVersion>3.10.4</WixVersion>
@@ -29,6 +29,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
+      <ArtifactNameWithVersionSdk>dotnet-core-uninstall-$(Version)</ArtifactNameWithVersionSdk>
       <SdkMSIInstallerFile>$(ArtifactsShippingPackagesDir)$(ArtifactNameWithVersionSdk)$(InstallerExtension)</SdkMSIInstallerFile>
       <CombinedFrameworkSdkHostMSIInstallerFile>$(ArtifactsShippingPackagesDir)$(ArtifactNameWithVersionCombinedHostHostFxrFrameworkSdk)$(BundleExtension)</CombinedFrameworkSdkHostMSIInstallerFile>
       <SdkBundleInstallerOutputGuidString>$(ProductBandCombinedHostHostFxrFrameworkSdkName)</SdkBundleInstallerOutputGuidString>

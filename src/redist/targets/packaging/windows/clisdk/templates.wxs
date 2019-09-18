@@ -4,10 +4,6 @@
   <Product Id="*" Name="$(var.ProductName)" Language="$(var.ProductLanguage)" Version="$(var.ProductVersion)" Manufacturer="$(var.Manufacturer)" UpgradeCode="$(var.UpgradeCode)">
     <Package Compressed="yes" InstallScope="perMachine" InstallerVersion="200" />
 
-    <Condition Message="$(var.ProductName) must be installed as part of a coordinated SDK installation.">
-      Installed OR ALLOWMSIINSTALL
-    </Condition>
-
     <MajorUpgrade DowngradeErrorMessage="$(var.DowngradeErrorMessage)" Schedule="afterInstallInitialize"/>
 
     <MediaTemplate CompressionLevel="high" EmbedCab="yes" />
