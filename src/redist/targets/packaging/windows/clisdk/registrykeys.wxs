@@ -5,7 +5,7 @@
     <ComponentGroup Id="AuthoredRegistryKeys_x86node">
       <Component Id="SetupRegistry" Directory="TARGETDIR" Win64="no">
         <RegistryKey Root="HKLM" Key="SOFTWARE\dotnet\Setup\InstalledVersions\$(var.Platform)\sdk">
-          <RegistryValue Action="write" Name="$(var.NugetVersion)" Type="integer" Value="1" KeyPath="yes"/>
+          <RegistryValue Action="write" Name="$(var.BuildVersion)" Type="integer" Value="1" KeyPath="yes"/>
         </RegistryKey>
       </Component>
       <!--- The 'WpfWinformsTemplatesFlag' registry key is meant to be a temporary solution for Visual Studio 16.0 -->

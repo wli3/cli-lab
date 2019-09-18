@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="SetSdkBrandingInfo">
+    <PropertyGroup>
+      <BuildName>SDK.Uninstall.Tool</BuildName>
+      <SdkBrandName>Microsoft .NET Core SDK Uninstall Tool</SdkBrandName>
+    </PropertyGroup>
+  </Target>
+
   <Target Name="SetupWixProperties" DependsOnTargets="GetCurrentRuntimeInformation">
     <!-- AcquireWix Properties -->
     <PropertyGroup>
@@ -75,21 +83,18 @@
   <Target Name="GenerateSdkMsi"
           DependsOnTargets="GenerateLayout;AcquireWix;MsiTargetsSetupInputOutputs;SetSdkBrandingInfo"
           Condition=" '$(OS)' == 'Windows_NT' "
-          Inputs="$(SdkInternalLayoutPath)**/*;
+          Inputs="$(SdkOutputDirectory)**/*;
                     $(SdkGenerateMsiPowershellScript)"
           Outputs="$(SdkMSIInstallerFile)">
 
     <Exec Command="powershell -NoProfile -NoLogo $(SdkGenerateMsiPowershellScript) ^
-                      '$(SdkInternalLayoutPath.TrimEnd('\'))' ^
+                      '$(SdkOutputDirectory.TrimEnd('\'))' ^
                       '$(SdkMSIInstallerFile)' ^
                       '$(WixRoot)' ^
                       '$(SdkBrandName)' ^
                       '$(MsiVersion)' ^
-                      '$(SDKBundleVersion)' ^
-                      '$(NugetVersion)' ^
                       '$(SdkInstallerUpgradeCode)' ^
                       '$(Architecture)' ^
-                      '$(SdkStableFileIdForApphostTransform)' ^
                       -InformationAction Continue" />
   </Target>
 

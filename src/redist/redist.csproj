@@ -5,7 +5,8 @@
     <CopyBuildOutputToPublishDirectory>false</CopyBuildOutputToPublishDirectory>
     <DisableImplicitFrameworkReferences>false</DisableImplicitFrameworkReferences>
   </PropertyGroup>
-
+    
+  <Import Project="targets\Versions.targets" />
   <Import Project="targets\BuildCoreSdkTasks.targets" />
   <Import Project="targets\GetRuntimeInformation.targets" />
   <!--  <Import Project="targets\GenerateBundledVersions.targets" /> -->

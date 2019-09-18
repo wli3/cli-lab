@@ -7,11 +7,8 @@ param(
     [Parameter(Mandatory=$true)][string]$WixRoot,
     [Parameter(Mandatory=$true)][string]$ProductMoniker,
     [Parameter(Mandatory=$true)][string]$DotnetMSIVersion,
-    [Parameter(Mandatory=$true)][string]$SDKBundleVersion,
-    [Parameter(Mandatory=$true)][string]$DotnetCLINugetVersion,
     [Parameter(Mandatory=$true)][string]$UpgradeCode,
-    [Parameter(Mandatory=$true)][string]$Architecture,
-    [Parameter(Mandatory=$true)][string]$StableFileIdForApphostTransform
+    [Parameter(Mandatory=$true)][string]$Architecture
 )
 
 $InstallFileswsx = ".\install-files.wxs"
@@ -24,18 +21,12 @@ function RunHeat
 
     Write-Information "Running heat.."
 
-    # -t $StableFileIdForApphostTransform to avoid sign check baseline apphost.exe name changes every build. Sign check uses File Id in MSI as whitelist name.
-    # Template apphost.exe get a new "File Id" in msi different every time (since File Id is generated according to file
-    # path, and file path has version number)
-    # use XSLT tranform to match the file path contains "AppHostTemplate\apphost.exe" and give it the same ID all the time.
-
     $heatOutput = .\heat.exe dir `"$inputDir`" -template fragment  `
         -sreg -gg  `
         -var var.DotnetSrc  `
         -cg InstallFiles  `
         -srd  `
         -dr DOTNETHOME  `
-        -t $StableFileIdForApphostTransform  `
         -out install-files.wxs
 
     Write-Information "Heat output: $heatOutput"
@@ -63,8 +54,6 @@ function RunCandle
         -dMicrosoftEula="$PSScriptRoot\clisdk\dummyeula.rtf" `
         -dProductMoniker="$ProductMoniker" `
         -dBuildVersion="$DotnetMSIVersion" `
-        -dSDKBundleVersion="$SDKBundleVersion" `
-        -dNugetVersion="$DotnetCLINugetVersion" `
         -dUpgradeCode="$UpgradeCode" `
         -arch "$Architecture" `
         -ext WixDependencyExtension.dll `
