@@ -5,7 +5,11 @@
     <CopyBuildOutputToPublishDirectory>false</CopyBuildOutputToPublishDirectory>
     <DisableImplicitFrameworkReferences>false</DisableImplicitFrameworkReferences>
   </PropertyGroup>
-    
+
+  <ItemGroup>
+    <ProjectReference Include="..\dotnet-core-uninstall\dotnet-core-uninstall.csproj" />
+  </ItemGroup>
+
   <Import Project="targets\Versions.targets" />
   <Import Project="targets\BuildCoreSdkTasks.targets" />
   <Import Project="targets\GetRuntimeInformation.targets" />
@@ -15,8 +19,7 @@
   <Import Project="targets\GenerateMSIs.targets" />
   <Import Project="targets\Signing.targets" />
 
-  <Target Name="GenerateMSIs"
-          AfterTargets="Build"
-          DependsOnTargets="GenerateLayout;GenerateSdkMsi">
+  <Target Name="GenerateMSIs" AfterTargets="Build" DependsOnTargets="GenerateLayout;GenerateSdkMsi">
   </Target>
+
 </Project>
