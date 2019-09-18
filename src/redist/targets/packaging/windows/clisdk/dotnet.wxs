@@ -4,10 +4,6 @@
   <Product Id="*" Name="$(var.ProductName)" Language="$(var.ProductLanguage)" Version="$(var.ProductVersion)" Manufacturer="$(var.Manufacturer)" UpgradeCode="$(var.UpgradeCode)">
     <Package Compressed="yes" InstallScope="perMachine" InstallerVersion="200" />
 
-    <Condition Message="$(var.ProductName) must be installed as part of a coordinated SDK installation.">
-      Installed OR ALLOWMSIINSTALL
-    </Condition>
-
     <MajorUpgrade DowngradeErrorMessage="$(var.DowngradeErrorMessage)" Schedule="afterInstallInitialize"/>
 
     <?if $(var.Platform)=x86?>
@@ -30,9 +26,9 @@
     <Property Id="MSIFASTINSTALL" Value="7" />
     <WixVariable Id="WixUILicenseRtf" Value="$(var.MicrosoftEula)" />
 
-    <Property Id="DOTNETEXE">
+    <Property Id="DOTNETCOREUNINSTALLTEXE">
       <DirectorySearch Id="DOTNETPATH" Path="[#DOTNETHOME]">
-        <FileSearch Id="DOTNETEXESEARCH" Name="dotnet.exe" />
+        <FileSearch Id="DOTNETCOREUNINSTALLTEXESEARCH" Name="dotnet-core-uninstall.exe" />
       </DirectorySearch>
     </Property>
 

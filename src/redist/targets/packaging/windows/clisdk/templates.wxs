@@ -21,9 +21,9 @@
     <Property Id="NUGETVERSION" Value="$(var.NugetVersion)" />
     <WixVariable Id="WixUILicenseRtf" Value="$(var.MicrosoftEula)" />
 
-    <Property Id="DOTNETEXE">
+    <Property Id="DOTNETCOREUNINSTALLTEXE">
       <DirectorySearch Id="DOTNETPATH" Path="[#DOTNETHOME]">
-        <FileSearch Id="DOTNETEXESEARCH" Name="dotnet.exe" />
+        <FileSearch Id="DOTNETCOREUNINSTALLTEXESEARCH" Name="dotnet.exe" />
       </DirectorySearch>
     </Property>
 
