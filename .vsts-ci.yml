@@ -84,8 +84,8 @@ jobs:
       - task: CopyFiles@2
         condition: and(eq(variables['system.pullrequest.isfork'], false), eq(variables['_BuildConfig'], 'Release'))
         inputs:
-          sourceFolder: 'artifacts/bin/dotnet-core-uninstall/$(_BuildConfig)/netcoreapp3.0/$(_RID)/publish/'
-          contents: 'dotnet-core-uninstall.exe'
+          sourceFolder: 'artifacts/packages/$(_BuildConfig)/Shipping/'
+          contents: '*.msi'
           targetFolder: '$(Build.ArtifactStagingDirectory)'
       - task: PublishBuildArtifacts@1
         condition: and(eq(variables['system.pullrequest.isfork'], false), eq(variables['_BuildConfig'], 'Release'))
