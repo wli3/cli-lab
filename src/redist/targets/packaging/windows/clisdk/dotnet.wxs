@@ -7,14 +7,14 @@
     <MajorUpgrade DowngradeErrorMessage="$(var.DowngradeErrorMessage)" Schedule="afterInstallInitialize"/>
 
     <?if $(var.Platform)=x86?>
-      <MediaTemplate CabinetTemplate="dx86-{0}.cab" CompressionLevel="high" />
+    <MediaTemplate CabinetTemplate="dx86-{0}.cab" CompressionLevel="high" />
     <?elseif $(var.Platform)=x64?>
-      <MediaTemplate CabinetTemplate="dx64-{0}.cab" CompressionLevel="high" />
+    <MediaTemplate CabinetTemplate="dx64-{0}.cab" CompressionLevel="high" />
     <?endif?>
-      
+
     <Feature Id="MainFeature" Title="Main Feature" Level="1">
       <ComponentGroupRef Id="InstallFiles" />
-      <ComponentGroupRef Id="AuthoredRegistryKeys_x86node"/>
+      <ComponentGroupRef Id="InstallSharedHostandDetectionKeys" />
     </Feature>
     <Feature Id="Provider" Absent="disallow" AllowAdvertise="no" Description="Used for Ref Counting" Display="hidden" Level="1" InstallDefault="local" Title="RefCounting" TypicalDefault="install">
       <ComponentRef Id="$(var.DependencyKeyId)" />
@@ -39,5 +39,12 @@
         <Directory Id="DOTNETHOME" Name="dotnet-core-uninstall"/>
       </Directory>
     </Directory>
+
+    <ComponentGroup Id="InstallSharedHostandDetectionKeys">
+      <Component Id="cmpCoreHost" Directory="DOTNETHOME" Guid="{97A5B877-FA59-4031-9E61-0ED30BBC00B1}">
+        <CreateFolder/>
+        <Environment Id="E_PATH" Name="PATH" Value="[DOTNETHOME]" Part="last" Action="set" System="yes" />
+      </Component>
+    </ComponentGroup>
   </Fragment>
 </Wix>
