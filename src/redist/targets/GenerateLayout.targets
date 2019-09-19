@@ -1,13 +1,13 @@
 <Project>
   <PropertyGroup>
-    <SdkOutputDirectory>$(ArtifactsDir)layout\dotnet-core-uninstall\</SdkOutputDirectory>
+    <DotnetCoreUninstallOutputDirectory>$(ArtifactsDir)layout\dotnet-core-uninstall\</DotnetCoreUninstallOutputDirectory>
     <DownloadsFolder>$(IntermediateOutputPath)downloads\</DownloadsFolder>
   </PropertyGroup>
 
   <Target Name="CleanLayoutPath">
     <!-- Remove everything from the publish directory so we don't have left over items from previous builds -->
-    <RemoveDir Directories="$(SdkOutputDirectory)" />
-    <MakeDir Directories="$(SdkOutputDirectory)" />
+    <RemoveDir Directories="$(DotnetCoreUninstallOutputDirectory)" />
+    <MakeDir Directories="$(DotnetCoreUninstallOutputDirectory)" />
   </Target>
 
   <Target Name="GenerateLayout"
@@ -21,7 +21,7 @@
     <MSBuild
       BuildInParallel="False"
       Projects="$(RepoRoot)\src\dotnet-core-uninstall\dotnet-core-uninstall.csproj"
-      Properties="NoBuild=true;PublishDir=$(SdkOutputDirectory);PublishSingleFile=false"
+      Properties="NoBuild=true;PublishDir=$(DotnetCoreUninstallOutputDirectory);PublishSingleFile=false"
       Targets="Publish">
     </MSBuild>
   </Target>

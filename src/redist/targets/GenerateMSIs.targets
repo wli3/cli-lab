@@ -78,12 +78,12 @@
   <Target Name="GenerateSdkMsi"
           DependsOnTargets="GenerateLayout;AcquireWix;MsiTargetsSetupInputOutputs;SetSdkBrandingInfo"
           Condition=" '$(OS)' == 'Windows_NT' "
-          Inputs="$(SdkOutputDirectory)**/*;
+          Inputs="$(DotnetCoreUninstallOutputDirectory)**/*;
                     $(SdkGenerateMsiPowershellScript)"
           Outputs="$(SdkMSIInstallerFile)">
 
     <Exec Command="powershell -NoProfile -NoLogo $(SdkGenerateMsiPowershellScript) ^
-                      '$(SdkOutputDirectory.TrimEnd('\'))' ^
+                      '$(DotnetCoreUninstallOutputDirectory.TrimEnd('\'))' ^
                       '$(SdkMSIInstallerFile)' ^
                       '$(WixRoot)' ^
                       '$(SdkBrandName)' ^
