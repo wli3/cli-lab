@@ -4,6 +4,8 @@
     <DownloadsFolder>$(IntermediateOutputPath)downloads\</DownloadsFolder>
     <_PublishSingleFileForRid>true</_PublishSingleFileForRid>
     <_PublishSingleFileForRid Condition="'$(RID)' == 'win-x86'">false</_PublishSingleFileForRid>
+    <_GenerateLayoutDependsOnTargets>CleanLayoutPath;PublishDotnetCoreUninstallProject</_GenerateLayoutDependsOnTargets>
+    <_GenerateLayoutDependsOnTargets Condition="'$(RID)' == 'win-x86'">CleanLayoutPath;PublishDotnetCoreUninstallProject;SignLayout</_GenerateLayoutDependsOnTargets>
   </PropertyGroup>
 
   <Target Name="CleanLayoutPath">
@@ -13,9 +15,7 @@
   </Target>
 
   <Target Name="GenerateLayout"
-          DependsOnTargets="CleanLayoutPath;
-                            PublishDotnetCoreUninstallProject;
-                            SignLayout"
+          DependsOnTargets="$(_GenerateLayoutDependsOnTargets)"
           BeforeTargets="AfterBuild">
   </Target>
 
