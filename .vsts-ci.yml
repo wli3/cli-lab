@@ -31,10 +31,10 @@ jobs:
         # Will eventually change this to two BYOC pools.
         ${{ if ne(variables['System.TeamProject'], 'internal') }}:
           name: NetCorePublic-Pool
-          queue: BuildPool.Windows.10.Amd64.VS2019.Open
+          queue: BuildPool.Windows.10.Amd64.vs2017.Open
         ${{ if eq(variables['System.TeamProject'], 'internal') }}:
           name: NetCoreInternal-Pool
-          queue: BuildPool.Windows.10.Amd64.VS2019
+          queue: BuildPool.Windows.10.Amd64.vs2017
       variables:
       - name: _RID
         value: win-x86
