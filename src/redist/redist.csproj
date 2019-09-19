@@ -4,6 +4,7 @@
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <CopyBuildOutputToPublishDirectory>false</CopyBuildOutputToPublishDirectory>
     <DisableImplicitFrameworkReferences>false</DisableImplicitFrameworkReferences>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
