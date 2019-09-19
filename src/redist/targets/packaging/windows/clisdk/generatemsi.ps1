@@ -26,7 +26,7 @@ function RunHeat
         -var var.DotnetSrc  `
         -cg InstallFiles  `
         -srd  `
-        -dr DOTNETHOME  `
+        -dr DOTNETDOTNETCOREUNINSTALLHOME  `
         -out install-files.wxs
 
     Write-Information "Heat output: $heatOutput"

@@ -13,7 +13,6 @@
   <Import Project="targets\Versions.targets" />
   <Import Project="targets\BuildCoreSdkTasks.targets" />
   <Import Project="targets\GetRuntimeInformation.targets" />
-  <!--  <Import Project="targets\GenerateBundledVersions.targets" /> -->
   <Import Project="targets\GenerateLayout.targets" />
   <Import Project="targets\FileExtensions.targets" />
   <Import Project="targets\GenerateMSIs.targets" />

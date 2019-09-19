@@ -20,19 +20,13 @@
 
     <!-- Generate MSI/Bundle Properties -->
     <PropertyGroup>
-      <CombinedFrameworkSdkHostBundleEngineName>$(ArtifactsTmpDir)/$(ArtifactNameWithVersionCombinedHostHostFxrFrameworkSdk)-engine.exe</CombinedFrameworkSdkHostBundleEngineName>
-
       <SdkGenerateMsiPowershellScript>$(MSBuildThisFileDirectory)packaging/windows/clisdk/generatemsi.ps1</SdkGenerateMsiPowershellScript>
       <SdkGenerateBundlePowershellScript>$(MSBuildThisFileDirectory)packaging/windows/clisdk/generatebundle.ps1</SdkGenerateBundlePowershellScript>
-      <GenerateNupkgPowershellScript>$(MSBuildThisFileDirectory)packaging/windows/clisdk/generatenupkg.ps1</GenerateNupkgPowershellScript>
-
     </PropertyGroup>
 
     <PropertyGroup>
       <ArtifactNameWithVersionSdk>dotnet-core-uninstall-$(Version)</ArtifactNameWithVersionSdk>
       <SdkMSIInstallerFile>$(ArtifactsShippingPackagesDir)$(ArtifactNameWithVersionSdk)$(InstallerExtension)</SdkMSIInstallerFile>
-      <CombinedFrameworkSdkHostMSIInstallerFile>$(ArtifactsShippingPackagesDir)$(ArtifactNameWithVersionCombinedHostHostFxrFrameworkSdk)$(BundleExtension)</CombinedFrameworkSdkHostMSIInstallerFile>
-      <SdkBundleInstallerOutputGuidString>$(ProductBandCombinedHostHostFxrFrameworkSdkName)</SdkBundleInstallerOutputGuidString>
     </PropertyGroup>
   </Target>
 

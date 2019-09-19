@@ -9,8 +9,8 @@
   <?define ProductName      =   "$(var.ProductMoniker) ($(sys.BUILDARCH))" ?>
   <?define ProductLanguage  =   "1033" ?>
   <?define ProductVersion   =   "$(var.Dotnet_ProductVersion)" ?>
-  <?define ProductFamily    =   "dotnet" ?>
-  <?define ProductEdition   =   "001dotnet" ?>
+  <?define ProductFamily    =   "dotnet_core_uninstall" ?>
+  <?define ProductEdition   =   "001dotnet_core_uninstall" ?>
   <?define LCID  = "$(var.ProductLanguage)"?>
   <?define DowngradeErrorMessage  = "A newer version is already installed; please uninstall it and re-run setup."?>
 
@@ -29,6 +29,6 @@
   <?error Invalid Platform ($(var.Platform))?>
   <?endif?>
 
-  <?define DependencyKey   = "Dotnet_CLI_$(var.BuildVersion)_$(var.Platform)"?>
+  <?define DependencyKey   = "dotnet_core_uninstall_$(var.BuildVersion)_$(var.Platform)"?>
   <?define DependencyKeyId = "$(var.DependencyKey)" ?>
 </Include>

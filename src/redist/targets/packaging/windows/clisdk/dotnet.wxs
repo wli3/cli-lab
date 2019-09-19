@@ -27,7 +27,7 @@
     <WixVariable Id="WixUILicenseRtf" Value="$(var.MicrosoftEula)" />
 
     <Property Id="DOTNETCOREUNINSTALLTEXE">
-      <DirectorySearch Id="DOTNETPATH" Path="[#DOTNETHOME]">
+      <DirectorySearch Id="DOTNETPATH" Path="[#DOTNETDOTNETCOREUNINSTALLHOME]">
         <FileSearch Id="DOTNETCOREUNINSTALLTEXESEARCH" Name="dotnet-core-uninstall.exe" />
       </DirectorySearch>
     </Property>
@@ -36,14 +36,14 @@
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="$(var.Program_Files)">
-        <Directory Id="DOTNETHOME" Name="dotnet-core-uninstall"/>
+        <Directory Id="DOTNETDOTNETCOREUNINSTALLHOME" Name="dotnet-core-uninstall"/>
       </Directory>
     </Directory>
 
     <ComponentGroup Id="InstallSharedHostandDetectionKeys">
-      <Component Id="cmpCoreHost" Directory="DOTNETHOME" Guid="{97A5B877-FA59-4031-9E61-0ED30BBC00B1}">
+      <Component Id="cmpCoreHost" Directory="DOTNETDOTNETCOREUNINSTALLHOME" Guid="{97A5B877-FA59-4031-9E61-0ED30BBC00B1}">
         <CreateFolder/>
-        <Environment Id="E_PATH" Name="PATH" Value="[DOTNETHOME]" Part="last" Action="set" System="yes" />
+        <Environment Id="E_PATH" Name="PATH" Value="[DOTNETDOTNETCOREUNINSTALLHOME]" Part="last" Action="set" System="yes" />
       </Component>
     </ComponentGroup>
   </Fragment>
