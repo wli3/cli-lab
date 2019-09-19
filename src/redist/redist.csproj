@@ -18,7 +18,7 @@
   <Import Project="targets\GenerateMSIs.targets" />
   <Import Project="targets\Signing.targets" />
 
-  <Target Name="GenerateMSIs" AfterTargets="Build" DependsOnTargets="GenerateLayout;GenerateSdkMsi">
+  <Target Name="GenerateMSIs" AfterTargets="Build" DependsOnTargets="GenerateLayout;GenerateDotnetCoreUninstallMsi">
   </Target>
 
 </Project>

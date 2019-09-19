@@ -3,7 +3,7 @@
     <PackageReference Include="Microsoft.DotNet.SignTool" Version="$(MicrosoftDotNetSignToolVersion)" PrivateAssets="All" />
   </ItemGroup>
 
-  <Target Name="SetSignProps" Condition="'$(SignCoreSdk)' == 'true'">
+  <Target Name="SetSignProps" Condition="'$(SignCoreDotnetCoreUninstall)' == 'true'">
 
     <MakeDir Directories="$(ArtifactsTmpDir)" Condition="!Exists('$(ArtifactsTmpDir)')" />
 
@@ -75,7 +75,7 @@
     </PropertyGroup>
   </Target>
 
-  <Target Name="SignLayout" Condition="'$(SignCoreSdk)' == 'true'" DependsOnTargets="SetSignProps">
+  <Target Name="SignLayout" Condition="'$(SignCoreDotnetCoreUninstall)' == 'true'" DependsOnTargets="SetSignProps">
 
     <ItemGroup>
       <!-- External files -->
@@ -101,19 +101,19 @@
 
   </Target>
 
-  <Target Name="SignSdkMsi" Condition="'$(SignCoreSdk)' == 'true'" DependsOnTargets="SetSignProps">
+  <Target Name="SignDotnetCoreUninstallMsi" Condition="'$(SignCoreDotnetCoreUninstall)' == 'true'" DependsOnTargets="SetSignProps">
 
     <ItemGroup>
-      <SdkMsiFilesToSign Include="$(DotnetCoreUninstallMSIInstallerFile)" />
-      <SdkMsiFilesToSign Include="$(ArtifactsShippingPackagesDir)*.cab" />
+      <DotnetCoreUninstallMsiFilesToSign Include="$(DotnetCoreUninstallMSIInstallerFile)" />
+      <DotnetCoreUninstallMsiFilesToSign Include="$(ArtifactsShippingPackagesDir)*.cab" />
 
-      <SdkMsiFileSignInfo Include="@(SdkMsiFilesToSign->'%(Filename)%(Extension)')">
+      <DotnetCoreUninstallMsiFileSignInfo Include="@(DotnetCoreUninstallMsiFilesToSign->'%(Filename)%(Extension)')">
         <CertificateName>$(InternalCertificateId)</CertificateName>
-      </SdkMsiFileSignInfo>
-      <DistinctSdkMsiFileSignInfo Include="@(SdkMsiFileSignInfo->Distinct())" />
+      </DotnetCoreUninstallMsiFileSignInfo>
+      <DistinctDotnetCoreUninstallMsiFileSignInfo Include="@(DotnetCoreUninstallMsiFileSignInfo->Distinct())" />
     </ItemGroup>
 
-    <Microsoft.DotNet.SignTool.SignToolTask DryRun="$(_DryRun)" TestSign="$(_TestSign)" CertificatesSignInfo="$(CertificatesSignInfo)" ItemsToSign="@(SdkMsiFilesToSign)" StrongNameSignInfo="@(StrongNameSignInfo)" FileSignInfo="@(DistinctSdkMsiFileSignInfo)" FileExtensionSignInfo="@(FileExtensionSignInfo)" TempDir="$(ArtifactsTmpDir)" LogDir="$(ArtifactsLogDir)" MSBuildPath="$(_DesktopMSBuildPath)" SNBinaryPath="$(NuGetPackageRoot)sn\$(SNVersion)\sn.exe" MicroBuildCorePath="$(NuGetPackageRoot)microbuild.core\$(MicroBuildCoreVersion)"/>
+    <Microsoft.DotNet.SignTool.SignToolTask DryRun="$(_DryRun)" TestSign="$(_TestSign)" CertificatesSignInfo="$(CertificatesSignInfo)" ItemsToSign="@(DotnetCoreUninstallMsiFilesToSign)" StrongNameSignInfo="@(StrongNameSignInfo)" FileSignInfo="@(DistinctDotnetCoreUninstallMsiFileSignInfo)" FileExtensionSignInfo="@(FileExtensionSignInfo)" TempDir="$(ArtifactsTmpDir)" LogDir="$(ArtifactsLogDir)" MSBuildPath="$(_DesktopMSBuildPath)" SNBinaryPath="$(NuGetPackageRoot)sn\$(SNVersion)\sn.exe" MicroBuildCorePath="$(NuGetPackageRoot)microbuild.core\$(MicroBuildCoreVersion)"/>
 
   </Target>
 
