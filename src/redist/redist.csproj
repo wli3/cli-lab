@@ -11,15 +11,15 @@
     <ProjectReference Include="..\dotnet-core-uninstall\dotnet-core-uninstall.csproj" />
   </ItemGroup>
 
-  <Import Condition="'$(RuntimeIdentifier)' == 'win-x86'" Project="targets\Versions.targets" />
-  <Import Condition="'$(RuntimeIdentifier)' == 'win-x86'" Project="targets\BuildCoreSdkTasks.targets" />
-  <Import Condition="'$(RuntimeIdentifier)' == 'win-x86'" Project="targets\GetRuntimeInformation.targets" />
-  <Import Condition="'$(RuntimeIdentifier)' == 'win-x86'" Project="targets\GenerateLayout.targets" />
-  <Import Condition="'$(RuntimeIdentifier)' == 'win-x86'" Project="targets\FileExtensions.targets" />
-  <Import Condition="'$(RuntimeIdentifier)' == 'win-x86'" Project="targets\GenerateMSIs.targets" />
-  <Import Condition="'$(RuntimeIdentifier)' == 'win-x86'" Project="targets\Signing.targets" />
+  <Import Condition="'$(RID)' == 'win-x86'" Project="targets\Versions.targets" />
+  <Import Condition="'$(RID)' == 'win-x86'" Project="targets\BuildCoreSdkTasks.targets" />
+  <Import Condition="'$(RID)' == 'win-x86'" Project="targets\GetRuntimeInformation.targets" />
+  <Import Project="targets\GenerateLayout.targets" />
+  <Import Condition="'$(RID)' == 'win-x86'" Project="targets\FileExtensions.targets" />
+  <Import Condition="'$(RID)' == 'win-x86'" Project="targets\GenerateMSIs.targets" />
+  <Import Condition="'$(RID)' == 'win-x86'" Project="targets\Signing.targets" />
 
-  <Target Condition="'$(RuntimeIdentifier)' == 'win-x86'" Name="GenerateMSIs" AfterTargets="Build" DependsOnTargets="GenerateLayout;GenerateDotnetCoreUninstallMsi">
+  <Target Condition="'$(RID)' == 'win-x86'" Name="GenerateMSIs" AfterTargets="Build" DependsOnTargets="GenerateLayout;GenerateDotnetCoreUninstallMsi">
   </Target>
 
 </Project>

@@ -79,7 +79,7 @@ jobs:
           -configuration $(_BuildConfig)
           -prepareMachine
           $(_BuildArgs)
-          /p:RuntimeIdentifier=$(_RID)
+          /p:RID=$(_RID)
         displayName: Build and Publish
       - task: CopyFiles@2
         condition: and(eq(variables['system.pullrequest.isfork'], false), eq(variables['_BuildConfig'], 'Release'))
@@ -119,12 +119,12 @@ jobs:
       - script: eng/common/cibuild.sh
           --configuration $(_BuildConfig)
           --prepareMachine
-          /p:RuntimeIdentifier=$(_RID)
+          /p:RID=$(_RID)
         displayName: Build
       - task: CopyFiles@2
         condition: and(eq(variables['system.pullrequest.isfork'], false), eq(variables['_BuildConfig'], 'Release'))
         inputs:
-          sourceFolder: 'artifacts/bin/dotnet-core-uninstall/$(_BuildConfig)/netcoreapp3.0/$(_RID)/publish/'
+          sourceFolder: 'artifacts/layout/dotnet-core-uninstall/'
           contents: 'dotnet-core-uninstall'
           targetFolder: '$(Build.ArtifactStagingDirectory)'
       - task: PublishBuildArtifacts@1

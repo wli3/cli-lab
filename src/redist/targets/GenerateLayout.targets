@@ -2,6 +2,8 @@
   <PropertyGroup>
     <DotnetCoreUninstallOutputDirectory>$(ArtifactsDir)layout\dotnet-core-uninstall\</DotnetCoreUninstallOutputDirectory>
     <DownloadsFolder>$(IntermediateOutputPath)downloads\</DownloadsFolder>
+    <_PublishSingleFileForRid>true</_PublishSingleFileForRid>
+    <_PublishSingleFileForRid Condition="$(RID) == win-x86">false</_PublishSingleFileForRid>
   </PropertyGroup>
 
   <Target Name="CleanLayoutPath">
@@ -21,7 +23,7 @@
     <MSBuild
       BuildInParallel="False"
       Projects="$(RepoRoot)\src\dotnet-core-uninstall\dotnet-core-uninstall.csproj"
-      Properties="NoBuild=true;PublishDir=$(DotnetCoreUninstallOutputDirectory);PublishSingleFile=false"
+      Properties="PublishDir=$(DotnetCoreUninstallOutputDirectory);PublishSingleFile=$(_PublishSingleFileForRid);RuntimeIdentifier=$(RID);PublishTrimmed=true;SelfContained=true"
       Targets="Publish">
     </MSBuild>
   </Target>
