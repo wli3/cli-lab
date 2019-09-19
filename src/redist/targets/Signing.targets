@@ -104,7 +104,7 @@
   <Target Name="SignSdkMsi" Condition="'$(SignCoreSdk)' == 'true'" DependsOnTargets="SetSignProps">
 
     <ItemGroup>
-      <SdkMsiFilesToSign Include="$(SdkMSIInstallerFile)" />
+      <SdkMsiFilesToSign Include="$(DotnetCoreUninstallMSIInstallerFile)" />
       <SdkMsiFilesToSign Include="$(ArtifactsShippingPackagesDir)*.cab" />
 
       <SdkMsiFileSignInfo Include="@(SdkMsiFilesToSign->'%(Filename)%(Extension)')">

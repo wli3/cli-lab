@@ -21,12 +21,11 @@
     <!-- Generate MSI/Bundle Properties -->
     <PropertyGroup>
       <SdkGenerateMsiPowershellScript>$(MSBuildThisFileDirectory)packaging/windows/clisdk/generatemsi.ps1</SdkGenerateMsiPowershellScript>
-      <SdkGenerateBundlePowershellScript>$(MSBuildThisFileDirectory)packaging/windows/clisdk/generatebundle.ps1</SdkGenerateBundlePowershellScript>
     </PropertyGroup>
 
     <PropertyGroup>
-      <ArtifactNameWithVersionSdk>dotnet-core-uninstall-$(Version)</ArtifactNameWithVersionSdk>
-      <SdkMSIInstallerFile>$(ArtifactsShippingPackagesDir)$(ArtifactNameWithVersionSdk)$(InstallerExtension)</SdkMSIInstallerFile>
+      <ArtifactNameWithVersionDotnetCoreUninstall>dotnet-core-uninstall-$(Version)</ArtifactNameWithVersionDotnetCoreUninstall>
+      <DotnetCoreUninstallMSIInstallerFile>$(ArtifactsShippingPackagesDir)$(ArtifactNameWithVersionDotnetCoreUninstall)$(InstallerExtension)</DotnetCoreUninstallMSIInstallerFile>
     </PropertyGroup>
   </Target>
 
@@ -34,7 +33,7 @@
           DependsOnTargets="GenerateLayout;SetupWixProperties;GetCoreSdkGitCommitInfo">
     <!-- Consumed By Publish -->
     <ItemGroup>
-      <GeneratedInstallers Include="$(SdkMSIInstallerFile);$(Templates30MSIInstallerFile);$(Templates22MSIInstallerFile);$(Templates21MSIInstallerFile);$(CombinedFrameworkSdkHostMSIInstallerFile)" />
+      <GeneratedInstallers Include="$(DotnetCoreUninstallMSIInstallerFile);$(Templates30MSIInstallerFile);$(Templates22MSIInstallerFile);$(Templates21MSIInstallerFile);$(CombinedFrameworkSdkHostMSIInstallerFile)" />
     </ItemGroup>
 
     <GenerateMsiVersion CommitCount="$(GitCommitCount)"
@@ -44,7 +43,7 @@
       <Output TaskParameter="MsiVersion" PropertyName="MsiVersion" />
     </GenerateMsiVersion>
 
-    <GenerateGuidFromName Name="$(SdkMSIInstallerFile)">
+    <GenerateGuidFromName Name="$(DotnetCoreUninstallMSIInstallerFile)">
       <Output TaskParameter="OutputGuid"
           PropertyName="SdkInstallerUpgradeCode" />
     </GenerateGuidFromName>
@@ -80,11 +79,11 @@
           Condition=" '$(OS)' == 'Windows_NT' "
           Inputs="$(DotnetCoreUninstallOutputDirectory)**/*;
                     $(SdkGenerateMsiPowershellScript)"
-          Outputs="$(SdkMSIInstallerFile)">
+          Outputs="$(DotnetCoreUninstallMSIInstallerFile)">
 
     <Exec Command="powershell -NoProfile -NoLogo $(SdkGenerateMsiPowershellScript) ^
                       '$(DotnetCoreUninstallOutputDirectory.TrimEnd('\'))' ^
-                      '$(SdkMSIInstallerFile)' ^
+                      '$(DotnetCoreUninstallMSIInstallerFile)' ^
                       '$(WixRoot)' ^
                       '$(SdkBrandName)' ^
                       '$(MsiVersion)' ^
