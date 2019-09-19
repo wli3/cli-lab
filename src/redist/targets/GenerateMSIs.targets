@@ -20,7 +20,7 @@
 
     <!-- Generate MSI/Bundle Properties -->
     <PropertyGroup>
-      <DotnetCoreUninstallGenerateMsiPowershellScript>$(MSBuildThisFileDirectory)packaging/windows/clisdk/generatemsi.ps1</DotnetCoreUninstallGenerateMsiPowershellScript>
+      <DotnetCoreUninstallGenerateMsiPowershellScript>$(MSBuildThisFileDirectory)packaging/windows/dotnetCoreUninstall/generatemsi.ps1</DotnetCoreUninstallGenerateMsiPowershellScript>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -30,7 +30,7 @@
   </Target>
 
   <Target Name="MsiTargetsSetupInputOutputs"
-          DependsOnTargets="GenerateLayout;SetupWixProperties;GetCoreSdkGitCommitInfo">
+          DependsOnTargets="GenerateLayout;SetupWixProperties;GetDotnetCoreUninstallGitCommitInfo">
 
     <GenerateMsiVersion CommitCount="$(GitCommitCount)"
                         VersionMajor="$(VersionMajor)"

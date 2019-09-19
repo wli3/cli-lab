@@ -1,6 +1,6 @@
 <Project>
 
-  <Target Name="GetCoreSdkGitCommitInfo">
+  <Target Name="GetDotnetCoreUninstallGitCommitInfo">
     <Exec Command="git rev-list --count HEAD"
           ConsoleToMSBuild="true"
           Condition=" '$(GitCommitCount)' == '' ">
