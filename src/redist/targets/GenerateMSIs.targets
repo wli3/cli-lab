@@ -88,12 +88,4 @@
                       -InformationAction Continue" />
   </Target>
 
-
-  <Target Name="GenerateMsis"
-        DependsOnTargets="GenerateLayout;
-                            MsiTargetsSetupInputOutputs;
-                            AcquireWix;
-                            GenerateDotnetCoreUninstallMsi;
-                            SignDotnetCoreUninstallMsi;"/>
-
 </Project>
